@@ -18,6 +18,12 @@
     border: #3abd3a 2px solid;
 }
 
+.failed{
+    text-decoration: line-through;
+    color: grey;
+    border: crimson 2px solid;
+}
+
 .done:hover{
     transform: scale(1);
 }

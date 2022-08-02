@@ -5,12 +5,20 @@ import {BsTrash} from "react-icons/bs";
 import {Button, Modal} from "@nextui-org/react";
 import {Context} from "../../context/context";
 
-const TodoItem = ({isDone, todo, doneTodo, removeTodo}) => {
+const TodoItem = ({isFailed, isDone, todo, doneTodo, removeTodo}) => {
     const {visible, setVisible} = useContext(Context)
 
     if(isDone) {
         return(
             <div className={[cl.todo, cl.done].join(" ")}>
+                <p>{todo.body}</p>
+            </div>
+        )
+    }
+
+    if(isFailed) {
+        return(
+            <div className={[cl.todo, cl.failed].join(" ")}>
                 <p>{todo.body}</p>
             </div>
         )
