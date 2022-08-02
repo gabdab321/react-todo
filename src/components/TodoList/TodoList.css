@@ -1,0 +1,33 @@
+.list{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    padding: 0 20px;
+}
+
+.todo-list{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.todo-item-enter {
+    opacity: 0;
+    transform: translateY(-300px) scale(0.9);
+}
+.todo-item-enter-active {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    transition: all 300ms;
+}
+.todo-item-exit {
+    opacity: 1;
+}
+.todo-item-exit-active {
+    opacity: 0;
+    transition: all 300ms;
+}

@@ -2,12 +2,12 @@ import React, {useState} from 'react';
 import cl from "./Form.module.css"
 
 const Form = ({addTodo}) => {
-    const [newTodo, setNewTodo] = useState("")
+    const [newTodo, setNewTodo] = useState({body: "", isDone: false, isFailed: false, creationTime: Date.now()})
 
     function createTodo(e) {
         e.preventDefault()
         addTodo(newTodo)
-        setNewTodo("")
+        setNewTodo({body: "", isDone: false, isFailed: false, creationTime: Date.now()})
     }
 
     return (
@@ -18,8 +18,8 @@ const Form = ({addTodo}) => {
                     className={cl.form__input}
                     type="text"
                     placeholder="Title"
-                    value={newTodo}
-                    onChange={e => setNewTodo(e.target.value)}
+                    value={newTodo.body}
+                    onChange={e => setNewTodo({...newTodo, body: e.target.value})}
                 />
                 <button className={cl.form__button} onClick={createTodo}>+</button>
             </form>

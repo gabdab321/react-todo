@@ -1,6 +1,6 @@
 .todo{
     width: 70%;
-    min-height: 40px;
+    min-height: 60px;
     border: lightcoral 2px solid;
     border-radius: 18px;
     margin-bottom: 15px;
@@ -9,19 +9,60 @@
     align-items: center;
     justify-content: space-between;
     font-size: 22px;
+    transition: all 0.4s;
+}
+
+.done{
+    text-decoration: line-through;
+    color: grey;
+}
+
+.todo:hover{
+    transform: scale(1.03);
+}
+
+.button__container{
+    display: flex;
+    align-items: center;
 }
 
 .remove_button{
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     color: crimson;
     text-align: center;
-    font-size: 40px;
+    font-size: 25px;
+    padding: 5px;
     cursor: pointer;
     font-weight: bold;
     transition: all 0.4s;
     background-color: transparent;
     border: 0;
+    margin-right: 15px;
 }
 
 .remove_button:hover{
-    transform: translateY(-7px) scale(1.02);
+    color: white;
+    background-color: crimson;
+}
+
+.done__button{
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    background-color: transparent;
+    border: 0;
+    color: #3abd3a;
+    font-weight: bold;
+    font-size: 30px;
+    transition: all 0.5s;
+}
+
+.done__button:hover{
+    color: white;
+    background-color: #3abd3a;
 }

@@ -1,16 +1,20 @@
 import React from 'react';
 import TodoItem from "../TodoItem/TodoItem";
-import cl from "./TodoList.module.css"
+import "./TodoList.css"
+import {CSSTransition, TransitionGroup} from "react-transition-group";
 
 const TodoList = ({todos, removeTodo}) => {
     return (
-        <div className={cl.list}>
-            {todos.length === 0
-                ?
-                <h2>No todos yet.</h2>
-                :
-                todos.map(todo => <TodoItem key={todo} removeTodo={removeTodo} body={todo}/>)
-            }
+        <div className="list">
+            <h2>{todos.length === 0 ? "No todos yet." : "Your todos"}</h2>
+            <TransitionGroup className="todo-list">
+                {todos.map(todo =>
+                    <CSSTransition timeout={500} classNames="todo-item" key={`${todo.body}-${todo.creationTime}`}>
+                        <TodoItem removeTodo={removeTodo} todo={todo}/>
+                    </CSSTransition>
+                )}
+            </TransitionGroup>
+
         </div>
     );
 };
