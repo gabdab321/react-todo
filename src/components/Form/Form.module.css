@@ -41,3 +41,11 @@
     color: #68aac0;
     border: 1px solid #68aac0;
 }
+
+.switch__label{
+    font-size: 18px;
+}
+
+.switch{
+    margin-bottom: 15px;
+}
