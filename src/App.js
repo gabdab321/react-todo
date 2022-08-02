@@ -1,10 +1,12 @@
-import {createContext, useMemo, useState} from "react";
+import React, {createContext, useMemo, useState} from "react";
 import "./styles/App.css"
 import Form from "./components/Form/Form";
 import TodoList from "./components/TodoList/TodoList";
 import {Context} from "./context/context";
+import {Button, Modal} from "@nextui-org/react";
 
 function App() {
+    const [visible, setVisible] = useState(false)
     const [todos, setTodos] = useState(JSON.parse(localStorage.getItem("todos")) || [])
     const [doneTodos, setDoneTodos] = useState(JSON.parse(localStorage.getItem("doneTodos")) || [])
     const [showDone, setShowDone] = useState(true)
@@ -32,8 +34,11 @@ function App() {
     return (
         <Context.Provider value={{
             showDone,
-            setShowDone
+            setShowDone,
+            visible,
+            setVisible
         }}>
+
             <div className="App">
                 <Form addTodo={addTodo}/>
                 <TodoList doneTodos={doneTodos} removeTodo={removeTodo} todos={todos} doneTodo={doneTodo}/>
