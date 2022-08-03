@@ -1,5 +1,5 @@
 .todo{
-    width: 70%;
+    width: 100%;
     min-height: 60px;
     border: #68aac0 2px solid;
     border-radius: 18px;
@@ -26,10 +26,6 @@
 
 .done:hover{
     transform: scale(1);
-}
-
-.todo:hover{
-    transform: scale(1.03);
 }
 
 .button__container{

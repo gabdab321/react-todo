@@ -10,8 +10,6 @@ function App() {
     const [todos, setTodos] = useState(JSON.parse(localStorage.getItem("todos")) || [])
     const [doneTodos, setDoneTodos] = useState(JSON.parse(localStorage.getItem("doneTodos")) || [])
     const [failedTodos, setFailedTodos] = useState(JSON.parse(localStorage.getItem("doneTodos")) || [])
-    const [showDone, setShowDone] = useState(true)
-    const [showFailed, setShowFailed] = useState(true)
 
     function addTodo(newTodo) {
         if(newTodo.body === "") {
@@ -37,17 +35,20 @@ function App() {
 
     return (
         <Context.Provider value={{
-            showDone,
-            setShowDone,
             visible,
             setVisible,
-            showFailed,
-            setShowFailed
         }}>
 
             <div className="App">
                 <Form addTodo={addTodo}/>
-                <TodoList failedTodos={failedTodos} doneTodos={doneTodos} removeTodo={removeTodo} todos={todos} doneTodo={doneTodo}/>
+                <TodoList
+                    failedTodos={failedTodos}
+                    setFailedTodos={setFailedTodos}
+                    doneTodos={doneTodos}
+                    setDoneTodos={setDoneTodos}
+                    removeTodo={removeTodo}
+                    todos={todos}
+                    doneTodo={doneTodo}/>
             </div>
         </Context.Provider>
     );

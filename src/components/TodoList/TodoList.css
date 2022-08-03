@@ -7,6 +7,19 @@
     padding: 0 20px;
 }
 
+.sublist{
+    width: 70%;
+}
+
+.sublist:focus{
+    border: 0;
+    outline: none;
+}
+
+.clear-button{
+    margin: 15px auto;
+}
+
 .todo-list{
     display: flex;
     flex-direction: column;
