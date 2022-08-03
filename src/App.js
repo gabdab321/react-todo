@@ -1,15 +1,14 @@
-import React, {createContext, useMemo, useState} from "react";
+import React, {useState} from "react";
 import "./styles/App.css"
 import Form from "./components/Form/Form";
 import TodoList from "./components/TodoList/TodoList";
 import {Context} from "./context/context";
-import {Button, Modal} from "@nextui-org/react";
 
 function App() {
     const [visible, setVisible] = useState(false)
     const [todos, setTodos] = useState(JSON.parse(localStorage.getItem("todos")) || [])
     const [doneTodos, setDoneTodos] = useState(JSON.parse(localStorage.getItem("doneTodos")) || [])
-    const [failedTodos, setFailedTodos] = useState(JSON.parse(localStorage.getItem("doneTodos")) || [])
+    const [failedTodos, setFailedTodos] = useState(JSON.parse(localStorage.getItem("failedTodos")) || [])
 
     function addTodo(newTodo) {
         if(newTodo.body === "") {
@@ -22,14 +21,15 @@ function App() {
 
     function removeTodo(todo) {
         setTodos(todos.filter(item => item !== todo))
-        setFailedTodos([...failedTodos, todo])
+        setFailedTodos([...failedTodos, {...todo, isFailed: true}])
         localStorage.setItem("todos", JSON.stringify(todos.filter(item => item !== todo)))
         localStorage.setItem("failedTodos", JSON.stringify([...failedTodos, {...todo, isFailed: true}]))
     }
 
     function doneTodo(todo) {
         setTodos(todos.filter(item => item !== todo))
-        setDoneTodos([...doneTodos, todo])
+        setDoneTodos([...doneTodos, {...todo, isDone: true}])
+        localStorage.setItem("todos", JSON.stringify(todos.filter(item => item !== todo)))
         localStorage.setItem("doneTodos", JSON.stringify([...doneTodos, {...todo, isDone: true}]))
     }
 
@@ -37,6 +37,9 @@ function App() {
         <Context.Provider value={{
             visible,
             setVisible,
+            addTodo,
+            removeTodo,
+            doneTodo
         }}>
 
             <div className="App">

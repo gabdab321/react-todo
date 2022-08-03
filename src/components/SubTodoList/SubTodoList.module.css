@@ -1,0 +1,12 @@
+.sublist{
+    width: 70%;
+}
+
+.sublist:focus{
+    border: 0;
+    outline: none;
+}
+
+.clear__button{
+    margin: 15px auto;
+}

@@ -1,12 +1,12 @@
-import React, {useContext, useState} from 'react';
+import React, {useContext} from 'react';
 import cl from "./TodoItem.module.css"
 import {MdOutlineDone} from "react-icons/md";
 import {BsTrash} from "react-icons/bs";
-import {Button, Modal} from "@nextui-org/react";
 import {Context} from "../../context/context";
+import MyModal from "../ui/MyModal/MyModal";
 
-const TodoItem = ({isFailed, isDone, todo, doneTodo, removeTodo}) => {
-    const {visible, setVisible} = useContext(Context)
+const TodoItem = ({isFailed, isDone, todo}) => {
+    const {visible, setVisible, doneTodo, removeTodo} = useContext(Context)
 
     if(isDone) {
         return(
@@ -26,22 +26,15 @@ const TodoItem = ({isFailed, isDone, todo, doneTodo, removeTodo}) => {
 
     return (
         <div className={cl.todo}>
-            <Modal
-                className="modal"
+            <MyModal
                 onClose={() => setVisible(false)}
-                blur
-                animated
                 open={visible}
-            >
-                <p>Are you sure that you want to delete this task?</p>
-                <div className="modal__button-container">
-                    <Button onPress={() => {
-                        removeTodo(todo)
-                        setVisible(false)
-                    }} shadow color="error" auto>Delete</Button>
-                    <Button onPress={() => setVisible(false)} shadow color="primary" auto>Cancel</Button>
-                </div>
-            </Modal>
+                onDelete={() => {
+                    removeTodo(todo)
+                    setVisible(false)
+                }}
+                onCancel={() => setVisible(false)}
+            />
 
             <p>{todo.body}</p>
             <div className={cl.button__container}>
